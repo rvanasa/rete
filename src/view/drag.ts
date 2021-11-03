@@ -5,6 +5,7 @@ export class Drag {
     pointerStart: [number, number] | null;
     el: HTMLElement;
     destroy: () => void;
+    button: number = 0;
 
     constructor(
         el: HTMLElement,
@@ -25,7 +26,7 @@ export class Drag {
     }
 
     down(e: PointerEvent) {
-        if ((e.pointerType === 'mouse') && (e.button !== 0)) return;
+        if ((e.pointerType === 'mouse') && (e.button !== this.button)) return;
         e.stopPropagation();
         this.pointerStart = [e.pageX, e.pageY]
 
